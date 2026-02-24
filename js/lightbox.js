@@ -3,6 +3,7 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const prevBtn = document.querySelector(".lightbox-prev");
 const nextBtn = document.querySelector(".lightbox-next");
+const closeBtn = document.querySelector(".lightbox-close");
 let currentIndex = 0;
 
 const getImgSrc = img => img.dataset.full || img.src;
@@ -42,9 +43,15 @@ prevBtn.addEventListener("click", event => {
   showPrev();
 });
 
+
 nextBtn.addEventListener("click", event => {
   event.stopPropagation();
   showNext();
+});
+
+closeBtn.addEventListener("click", event => {
+  event.stopPropagation();
+  closeLightbox();
 });
 
 document.addEventListener("keydown", event => {
