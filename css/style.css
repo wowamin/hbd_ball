@@ -79,22 +79,22 @@ body {
     padding: 20px 15px;
   }
   .banner-hbd {
-    /* 手機螢幕窄，降低高度並置中圖片，避免圖片被裁切 */
-    height: 220px;
+    /* 手機螢幕窄，容器高度改為自動並靠上對齊圖片 */
+    height: auto;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background-color: #dce8e3;
   }
   .banner-img {
-    /* 手機上完整顯示整張 GIF，不裁切 */
-    object-fit: contain;
-    object-position: center;
-    width: auto;
+    /* 用 100% 寬度填滿，並以圖片頂部為準 */
+    width: 100%;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;
+    object-fit: contain;
+    object-position: top center;
     display: block;
+    max-width: 100%;
+    max-height: none;
   }
 }
 
