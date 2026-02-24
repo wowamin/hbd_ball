@@ -116,6 +116,7 @@ body {
   }
 }
 
+
 /* 桌機與大於 900px：以完整圖為優先，避免裁切 */
 @media (min-width: 901px) {
   .banner-hbd {
