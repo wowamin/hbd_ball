@@ -5,7 +5,7 @@ const audio = document.getElementById('myAudio');
   const unlockAudio = () => {
     if (audio.muted) {
       audio.muted = false;
-      audio.volume = 0.4;          // 建議預設音量不要太大，0.3~0.6 比較舒服
+      audio.volume = 0.3;          // 建議預設音量不要太大，0.3~0.6 比較舒服
       // audio.play().catch(() => {});  // 通常不用再 play，因為 muted 狀態下已經在播
       console.log('背景音樂聲音已開啟');
     }
