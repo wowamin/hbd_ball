@@ -7,6 +7,10 @@
 
   document.body.classList.add("welcome-active");
 
+  const triggerBackgroundAudio = () => {
+    document.dispatchEvent(new Event("welcome:enter"));
+  };
+
   const closeWelcome = () => {
     if (screen.classList.contains("is-hidden")) return;
     screen.classList.add("is-hidden");
@@ -21,8 +25,17 @@
   video.addEventListener("error", closeWelcome);
 
   if (skipBtn) {
-    skipBtn.addEventListener("click", closeWelcome);
+    skipBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      triggerBackgroundAudio();
+      closeWelcome();
+    });
   }
+
+  screen.addEventListener("click", () => {
+    triggerBackgroundAudio();
+    closeWelcome();
+  });
 
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === "function") {
