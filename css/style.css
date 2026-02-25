@@ -13,6 +13,48 @@ body {
   background: #dce8e3;
 }
 
+body.welcome-active {
+  overflow: hidden;
+}
+
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+#welcome-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#welcome-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#welcome-skip {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 .wrap {
   margin: 0 auto;
   max-width: 1920px;

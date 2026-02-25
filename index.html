@@ -47,6 +47,13 @@
 
 <body>
 
+<div id="welcome-screen" aria-label="Welcome screen">
+  <video id="welcome-video" autoplay muted playsinline preload="auto">
+    <source src="./candela.mp4" type="video/mp4">
+  </video>
+  <button id="welcome-skip" type="button" aria-label="Skip welcome video">Skip</button>
+</div>
+
 <div class="wrap">
 <!-- 生日圖片 -->
 <section class="banner-hbd">
@@ -174,6 +181,7 @@
 
 
 
+<script src="./js/welcome.js"></script>
 <script src="./js/music.js"></script>
 <script src="./js/lightbox.js"></script>
 
