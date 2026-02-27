@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Project: hbd_ball
  * Author: wowamin
  * URL: https://wowamin.github.io/hbd_ball/
@@ -13,38 +13,30 @@
   audio.muted = false;
   audio.volume = 0.4;
 
-  let autoPlayTimer = null;
-  let gestureUnlockBound = false;
+  let unlocked = false;
 
-  const playAudio = () => {
+  const playOnFirstGesture = () => {
+    if (unlocked) return;
+    unlocked = true;
+
     audio.muted = false;
     audio.volume = 0.4;
+
     const playPromise = audio.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(() => {
+        // If playback is still blocked, wait for another user gesture.
+        unlocked = false;
         bindGestureUnlock();
       });
     }
   };
 
-  const unlockByGesture = () => {
-    playAudio();
-  };
-
   const bindGestureUnlock = () => {
-    if (gestureUnlockBound) return;
-    gestureUnlockBound = true;
-    document.addEventListener("pointerdown", unlockByGesture, { once: true });
-    document.addEventListener("touchstart", unlockByGesture, { once: true });
-    document.addEventListener("keydown", unlockByGesture, { once: true });
+    document.addEventListener("pointerdown", playOnFirstGesture, { once: true });
+    document.addEventListener("touchstart", playOnFirstGesture, { once: true });
+    document.addEventListener("keydown", playOnFirstGesture, { once: true });
   };
 
-  const scheduleAutoPlayAfterEnter = () => {
-    if (autoPlayTimer !== null) return;
-    autoPlayTimer = window.setTimeout(() => {
-      playAudio();
-    }, 2000);
-  };
-
-  document.addEventListener("welcome:enter", scheduleAutoPlayAfterEnter, { once: true });
+  bindGestureUnlock();
 })();

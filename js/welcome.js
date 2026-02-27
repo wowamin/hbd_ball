@@ -34,10 +34,6 @@
     });
   }
 
-  screen.addEventListener("click", () => {
-    closeWelcome();
-  });
-
   video.addEventListener("playing", triggerBackgroundAudio, { once: true });
 
   const playPromise = video.play();
