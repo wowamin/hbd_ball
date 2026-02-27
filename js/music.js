@@ -10,11 +10,12 @@
   const audio = document.getElementById("myAudio");
   if (!audio) return;
 
-  let unlocked = false;
+  audio.muted = false;
+  audio.volume = 0.4;
 
-  const unlockAndPlayAudio = () => {
-    if (unlocked) return;
-    unlocked = true;
+  let autoPlayTimer = null;
+
+  const playAudio = () => {
     audio.muted = false;
     audio.volume = 0.4;
     const playPromise = audio.play();
@@ -23,7 +24,12 @@
     }
   };
 
-  document.addEventListener("click", unlockAndPlayAudio, { once: true });
-  document.addEventListener("touchstart", unlockAndPlayAudio, { once: true });
-  document.addEventListener("welcome:enter", unlockAndPlayAudio, { once: true });
+  const scheduleAutoPlayAfterEnter = () => {
+    if (autoPlayTimer !== null) return;
+    autoPlayTimer = window.setTimeout(() => {
+      playAudio();
+    }, 2000);
+  };
+
+  document.addEventListener("welcome:enter", scheduleAutoPlayAfterEnter, { once: true });
 })();

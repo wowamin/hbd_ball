@@ -6,8 +6,11 @@
   if (!screen || !video) return;
 
   document.body.classList.add("welcome-active");
+  let entered = false;
 
   const triggerBackgroundAudio = () => {
+    if (entered) return;
+    entered = true;
     document.dispatchEvent(new Event("welcome:enter"));
   };
 
@@ -27,15 +30,15 @@
   if (skipBtn) {
     skipBtn.addEventListener("click", (event) => {
       event.stopPropagation();
-      triggerBackgroundAudio();
       closeWelcome();
     });
   }
 
   screen.addEventListener("click", () => {
-    triggerBackgroundAudio();
     closeWelcome();
   });
+
+  video.addEventListener("playing", triggerBackgroundAudio, { once: true });
 
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === "function") {
