@@ -6,6 +6,8 @@
   if (!screen || !video) return;
 
   document.body.classList.add("welcome-active");
+  screen.setAttribute("role", "button");
+  screen.setAttribute("tabindex", "0");
   let entered = false;
 
   const triggerBackgroundAudio = () => {
@@ -33,6 +35,14 @@
       closeWelcome();
     });
   }
+
+  screen.addEventListener("click", closeWelcome);
+  screen.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      closeWelcome();
+    }
+  });
 
   video.addEventListener("playing", triggerBackgroundAudio, { once: true });
 
