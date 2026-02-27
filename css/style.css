@@ -66,6 +66,39 @@ body.welcome-active {
   pointer-events: none;
 }
 
+#scroll-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 15000;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 50px;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  animation: scrollHintFloat 1.4s ease-in-out infinite;
+}
+
+#scroll-hint.is-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+}
+
+body.welcome-active #scroll-hint {
+  opacity: 0;
+}
+
 #welcome-skip {
   position: absolute;
   right: 20px;
@@ -82,6 +115,17 @@ body.welcome-active {
 @keyframes welcomeTipBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.45; }
+}
+
+@keyframes scrollHintFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+@media (max-width: 600px) {
+  #scroll-hint {
+    display: flex;
+  }
 }
 
 .wrap {
