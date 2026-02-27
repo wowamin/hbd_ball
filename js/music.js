@@ -14,14 +14,29 @@
   audio.volume = 0.4;
 
   let autoPlayTimer = null;
+  let gestureUnlockBound = false;
 
   const playAudio = () => {
     audio.muted = false;
     audio.volume = 0.4;
     const playPromise = audio.play();
     if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(() => {});
+      playPromise.catch(() => {
+        bindGestureUnlock();
+      });
     }
+  };
+
+  const unlockByGesture = () => {
+    playAudio();
+  };
+
+  const bindGestureUnlock = () => {
+    if (gestureUnlockBound) return;
+    gestureUnlockBound = true;
+    document.addEventListener("pointerdown", unlockByGesture, { once: true });
+    document.addEventListener("touchstart", unlockByGesture, { once: true });
+    document.addEventListener("keydown", unlockByGesture, { once: true });
   };
 
   const scheduleAutoPlayAfterEnter = () => {

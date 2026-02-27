@@ -441,4 +441,8 @@ body.welcome-active {
     border-radius: 0;
     object-fit: contain;
   }
+
+  .music h4 {
+    text-align: center;
+  }
 }
