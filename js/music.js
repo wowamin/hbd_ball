@@ -1,3 +1,11 @@
+/**
+ * Project: hbd_ball
+ * Author: wowamin
+ * URL: https://wowamin.github.io/hbd_ball/
+ * Copyright (c) 2024 wowamin.
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ */
+
 (() => {
   const audio = document.getElementById("myAudio");
   if (!audio) return;

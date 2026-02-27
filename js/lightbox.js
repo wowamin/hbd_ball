@@ -1,3 +1,11 @@
+/**
+ * Project: hbd_ball
+ * Author: wowamin
+ * URL: https://wowamin.github.io/hbd_ball/
+ * Copyright (c) 2024 wowamin.
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ */
+
 const cards = Array.from(document.querySelectorAll('.card img'));
 const lightbox = document.getElementById('lightbox');
 const carousel = document.getElementById('carouselExampleIndicators');
