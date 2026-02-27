@@ -16,7 +16,7 @@
     if (unlocked) return;
     unlocked = true;
     audio.muted = false;
-    audio.volume = 0.3;
+    audio.volume = 0.4;
     const playPromise = audio.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(() => {});
