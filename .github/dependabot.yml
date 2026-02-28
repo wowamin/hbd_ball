@@ -1,0 +1,15 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: "npm" # 填入你的語言，例如 npm, pip, gomod
+    directory: "/"           # 專案根目錄
+    schedule:
+      interval: "weekly"     # 每週檢查一次，避免 PR 太多
+      day: "monday"          # 固定在週一檢查
+    open-pull-requests-limit: 5 # 同時最多維持 5 個 PR，才不會亂掉
+    labels:
+      - "dependencies"       # 自動幫 PR 加上標籤
